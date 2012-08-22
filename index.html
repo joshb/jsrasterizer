@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>rasterizer</title>
+<link rel="stylesheet" type="text/css" href="Styles/Rasterizer.css" />
+<script src="Scripts/Vector4.js"></script>
+<script src="Scripts/Matrix4.js"></script>
+<script src="Scripts/Rasterizer.js"></script>
+<script src="Scripts/Box.js"></script>
+</head>
+<body>
+
+<div id="framebuffer"></div>
+
+<a href="Scripts/Box.js">Box.js</a>
+<a href="Scripts/Matrix4.js">Matrix4.js</a>
+<a href="Scripts/Rasterizer.js">Rasterizer.js</a>
+<a href="Scripts/Vector4.js">Vector4.js</a>
+
+<script>
+var rast = new Rasterizer(document.getElementById("framebuffer"));
+
+var boxes = new Array();
+boxes.push(new Box(new Vector4(-1, -1, -1), 1, new Vector4(255, 0, 0)));
+boxes.push(new Box(new Vector4(-1, -1, 1), 1, new Vector4(0, 255, 0)));
+boxes.push(new Box(new Vector4(-1, 1, -1), 1, new Vector4(0, 0, 255)));
+boxes.push(new Box(new Vector4(-1, 1, 1), 1, new Vector4(255, 255, 255)));
+boxes.push(new Box(new Vector4(1, -1, -1), 1, new Vector4(64, 64, 64)));
+boxes.push(new Box(new Vector4(1, -1, 1), 1, new Vector4(255, 255, 0)));
+boxes.push(new Box(new Vector4(1, 1, -1), 1, new Vector4(0, 255, 255)));
+boxes.push(new Box(new Vector4(1, 1, 1), 1, new Vector4(255, 0, 255)));
+
+var r = 0.0;
+function render()
+{
+	rast.clear();
+
+	r += (Math.PI / 180.0) * 2;
+	var mr = Matrix4.rollRotation(r);
+	var my = Matrix4.yawRotation(-r * 1.5);
+	var mt = Matrix4.translation(new Vector4(0, 0, -10));
+	rast.setModelviewMatrix(mt.multiply(my.multiply(mr)));
+
+	for(var i = 0; i < boxes.length; ++i)
+		boxes[i].render(rast);
+}
+
+setInterval(render, 100);
+</script>
+
+</body>
+</html>
