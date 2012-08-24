@@ -15,16 +15,6 @@ body
 	text-shadow: black 2px 2px 2px;
 }
 
-div.pixel
-{
-	display: block;
-	position: absolute;
-	width: 16px;
-	height: 16px;
-	background-color: transparent;
-	color: inherit;
-}
-
 #framebuffer
 {
 	position: absolute;
@@ -32,6 +22,32 @@ div.pixel
 	top: 0;
 	width: 100%;
 	height: 100%;
+}
+
+div.pixel
+{
+	display: block;
+	position: absolute;
+	background-color: transparent;
+	color: inherit;
+}
+
+#framebuffer.pixelSize16 > div.pixel
+{
+	width: 16px;
+	height: 16px;
+}
+
+#framebuffer.pixelSize32 > div.pixel
+{
+	width: 32px;
+	height: 32px;
+}
+
+#framebuffer.pixelSize64 > div.pixel
+{
+	width: 64px;
+	height: 64px;
 }
 
 a:link, a:visited, a:active
@@ -54,4 +70,10 @@ a:hover
 	padding-left: 32px;
 	background-color: rgba(64, 64, 127, 0.6);
 	color: inherit;
+}
+
+p
+{
+	position: relative;
+	padding-left: 16px;
 }
