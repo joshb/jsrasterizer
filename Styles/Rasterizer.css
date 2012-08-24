@@ -50,6 +50,12 @@ div.pixel
 	height: 64px;
 }
 
+#framebuffer.pixelSize128 > div.pixel
+{
+	width: 128px;
+	height: 128px;
+}
+
 a:link, a:visited, a:active
 {
 	display: block;
