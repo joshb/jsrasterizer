@@ -25,6 +25,11 @@
 
 function Edge(color1, x1, y1, z1, color2, x2, y2, z2)
 {
+	x1 = Math.floor(x1);
+	y1 = Math.floor(y1);
+	x2 = Math.floor(x2);
+	y2 = Math.floor(y2);
+
 	if(y1 < y2) {
 		this.color1 = color1;
 		this.x1 = x1;
@@ -48,6 +53,9 @@ function Edge(color1, x1, y1, z1, color2, x2, y2, z2)
 
 function Span(color1, x1, z1, color2, x2, z2)
 {
+	x1 = Math.floor(x1);
+	x2 = Math.floor(x2);
+
 	if(x1 < x2) {
 		this.color1 = color1;
 		this.x1 = x1;
